@@ -24,9 +24,8 @@ resource "aws_security_group" "default_sg" {
   tags = {
     Name = "Default SG to use in EC2."
   }
-
 }
 
-output "id" {
+output "security_group_id" {
   value = "aws_security_group.default_sg.id"
 }

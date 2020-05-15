@@ -27,9 +27,8 @@ module "sg-heisenbuggerr" {
 }
 
 module "ec2-heisenbuggerr" {
-  source = "./modules/ec2"
-
-  default_ingress = var.default_ingress
+  source     = "./modules/ec2"
+  vpc_sg_ids = module.sg-heisenbuggerr.security_group_id
 
   providers = {
     aws = aws.dev

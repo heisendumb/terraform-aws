@@ -23,8 +23,9 @@ data "aws_ami" "centos7" {
   }
 }
 
-resource "aws_instance" "name" {
-  ami           = aws_ami.centos7.id
-  instance_type = "t2.micro"
-
+resource "aws_instance" "compute_node" {
+  ami                    = data.aws_ami.centos7.id
+  instance_type          = "t2.micro"
+  monitoring             = true
+  vpc_security_group_ids = [var.vpc_sg_ids]
 }
