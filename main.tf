@@ -39,6 +39,12 @@ module "ec2-heisenbuggerr" {
   }
 }
 
+#module "eks-cluster" {
+#  source           = "github.com/darkn3rd/eks-basic"
+#  region           = var.region
+#  eks_cluster_name = var.eks_cluster_name
+#}
+
 terraform {
   backend "s3" {
     encrypt        = true

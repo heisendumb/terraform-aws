@@ -86,3 +86,8 @@ variable "disk_size" {
   description = "EBS size"
   default     = 10
 }
+
+variable eks_cluster_name {
+  description = "k8s AWS cluster name"
+  default     = "adorable-unicorn"
+}
