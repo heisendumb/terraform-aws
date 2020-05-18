@@ -56,23 +56,33 @@ variable "default_ingress" {
 variable "default_acl_ingress" {
   description = "ACL at VPN for ingress ports"
   default = {
-    22   = { description = "Inbound to SSH", cidr_blocks = "0.0.0.0/0", target_port = 22, protocol = "TCP", rule_no = 100, action = "allow" }
-    80   = { description = "Inbound to HTTP", cidr_blocks = "0.0.0.0/0", target_port = 80, protocol = "TCP", rule_no = 200, action = "allow" }
-    443  = { description = "Inbound to HTTPS", cidr_blocks = "0.0.0.0/0", target_port = 443, protocol = "TCP", rule_no = 300, action = "allow" }
-    5432 = { description = "Inbound to PostgreSQL", cidr_blocks = "0.0.0.0/0", target_port = 5432, protocol = "TCP", rule_no = 400, action = "allow" }
-    1024 = { description = "Inbound to Ephemeral ports", cidr_blocks = "0.0.0.0/0", target_port = 65535, protocol = "TCP", rule_no = 500, action = "allow" }
+    22   = { description = "Inbound to SSH", cidr_blocks = "0.0.0.0/0", target_port = 22, protocol = "tcp", rule_no = 100, action = "allow" }
+    80   = { description = "Inbound to HTTP", cidr_blocks = "0.0.0.0/0", target_port = 80, protocol = "tcp", rule_no = 200, action = "allow" }
+    443  = { description = "Inbound to HTTPS", cidr_blocks = "0.0.0.0/0", target_port = 443, protocol = "tcp", rule_no = 300, action = "allow" }
+    5432 = { description = "Inbound to PostgreSQL", cidr_blocks = "0.0.0.0/0", target_port = 5432, protocol = "tcp", rule_no = 400, action = "allow" }
+    1024 = { description = "Inbound to Ephemeral ports", cidr_blocks = "0.0.0.0/0", target_port = 65535, protocol = "tcp", rule_no = 500, action = "allow" }
   }
 }
 
 variable "default_acl_egress" {
   description = "ACL at VPN for egress ports"
   default = {
-    22   = { description = "Outbound to SSH", cidr_blocks = "0.0.0.0/0", target_port = 22, protocol = "TCP", rule_no = 100, action = "allow" }
-    1024 = { description = "Outbound to Ephemeral ports", cidr_blocks = "0.0.0.0/0", target_port = 65535, protocol = "TCP", rule_no = 500, action = "allow" }
+    22   = { description = "Outbound to SSH", cidr_blocks = "0.0.0.0/0", target_port = 22, protocol = "tcp", rule_no = 100, action = "allow" }
+    1024 = { description = "Outbound to Ephemeral ports", cidr_blocks = "0.0.0.0/0", target_port = 65535, protocol = "tcp", rule_no = 500, action = "allow" }
   }
 }
 
 variable "destination_cidr" {
   description = "Default cidr block destination"
   default     = "0.0.0.0/0"
+}
+
+variable "public_key" {
+  description = "Public key"
+  default     = "/home/heisenbuggerr/.ssh/heisenbuggerr.pub"
+}
+
+variable "disk_size" {
+  description = "EBS size"
+  default     = 10
 }

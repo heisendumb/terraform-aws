@@ -1,7 +1,7 @@
 resource "aws_security_group" "default_sg" {
   name        = "default_sg"
   description = "Allow inbound traffic"
-  vpc_id      = ""
+  vpc_id      = var.vpc_default_id
 
   dynamic "ingress" {
     for_each = var.default_ingress
@@ -13,7 +13,7 @@ resource "aws_security_group" "default_sg" {
       cidr_blocks = ingress.value["cidr_blocks"]
     }
   }
-  # allow egress all ports
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -24,8 +24,4 @@ resource "aws_security_group" "default_sg" {
   tags = {
     Name = "Default SG to use in EC2."
   }
-}
-
-output "security_group_id" {
-  value = "aws_security_group.default_sg.id"
 }

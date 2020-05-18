@@ -20,6 +20,7 @@ module "sg-heisenbuggerr" {
   source = "./modules/sg"
 
   default_ingress = var.default_ingress
+  vpc_default_id  = module.vpc-heisenbuggerr.vpc_default_id
 
   providers = {
     aws = aws.dev
@@ -27,8 +28,11 @@ module "sg-heisenbuggerr" {
 }
 
 module "ec2-heisenbuggerr" {
-  source     = "./modules/ec2"
-  vpc_sg_ids = module.sg-heisenbuggerr.security_group_id
+  source        = "./modules/ec2"
+  vpc_sg_ids    = module.sg-heisenbuggerr.security_group_id
+  vpc_subnet_id = module.vpc-heisenbuggerr.vpc_subnet_id
+  public_key    = var.public_key
+  disk_size     = var.disk_size
 
   providers = {
     aws = aws.dev
